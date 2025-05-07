@@ -39,6 +39,14 @@ done
 
 echo "Finished searching and removing .DS_Store files."
 
+# Confirms if you want to remove the Finder plist file
+read -p "Please confirm that you want to remove the Finder plist file. (y/n)" confirm
 
-
-
+if [[ "$confirm" != "y" ]]; then
+  echo "Deletion cancelled."
+  exit 1
+else
+  echo "Deleting com.apple.finder.plist"
+  sudo rm -rf "$HOME/Library/Preferences/com.apple.finder.plist"
+  echo "Finder plist has been removed, please restart the Mac to complete repair"
+  fi
